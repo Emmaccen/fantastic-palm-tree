@@ -5,8 +5,13 @@ import { IProduct } from './interface/product';
   selector: 'product-list',
 })
 export class ProductListComponent implements OnInit {
+  headerStars = '';
+  onNotify(message: string): void {
+    this.headerStars = message;
+  }
   ngOnInit(): void {
     console.log('application started');
+    this.filterBy = 'hammer';
   }
 
   title = 'Product List';
@@ -14,7 +19,16 @@ export class ProductListComponent implements OnInit {
   imageMargin = 10;
   imageRadius = '50%';
 
-  filterBy = 'ham';
+  private _filterBy: string = '';
+
+  get filterBy(): string {
+    return this._filterBy;
+  }
+
+  set filterBy(value: string) {
+    this._filterBy = value;
+    this.filterable = this.filterList(value);
+  }
 
   showImage = true;
 
@@ -22,16 +36,39 @@ export class ProductListComponent implements OnInit {
     this.showImage = !this.showImage;
   }
 
-  filterList() {
-    //
+  filterList(value: string): IProduct[] {
+    return this.products.filter((product) =>
+      product.productName
+        .toLocaleLowerCase()
+        .includes(value.toLocaleLowerCase().trim())
+    );
   }
 
-  //   products: IProduct[] = [
-  //         productName: 'Hammer'
-  //         price: 23.3,
-  //         code: '98hf9283n93h',
-  //         img: 'https://res.cloudinary.com/practicaldev/image/fetch/s--fnOLwP2s--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/372534/450e41d1-63dc-4a79-adf9-3bd1abb70f49.jpg',
-  //         starRating: 4.2,
-  //         availability: `${new Date().toDateString()}`,
-  //   ];
+  filterable: IProduct[] = [];
+  products: IProduct[] = [
+    {
+      productName: 'Hammer',
+      code: 'J90-N23R3-R3R',
+      price: 45.99,
+      starRating: 4.3,
+      img: 'https://lh3.googleusercontent.com/ogw/ADea4I7RsvE6g4QHoadQ672IwHgG4MSCMnnmCmOAUzA4=s32-c-mo',
+      availability: `${new Date().toLocaleDateString()}`,
+    },
+    {
+      productName: 'Yellow Bird',
+      code: '7H0JR-R29HR-4R',
+      price: 99.99,
+      starRating: 2.3,
+      img: 'https://lh3.googleusercontent.com/ogw/ADea4I7RsvE6g4QHoadQ672IwHgG4MSCMnnmCmOAUzA4=s32-c-mo',
+      availability: `${new Date().toLocaleDateString()}`,
+    },
+    {
+      productName: 'Justin Fork',
+      code: 'H73R-F3TH3-G35',
+      price: 19.99,
+      starRating: 5.0,
+      img: 'https://lh3.googleusercontent.com/ogw/ADea4I7RsvE6g4QHoadQ672IwHgG4MSCMnnmCmOAUzA4=s32-c-mo',
+      availability: `${new Date().toLocaleDateString()}`,
+    },
+  ];
 }
