@@ -1,17 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './interface/product';
+import { ProductService } from './services/product.service';
 @Component({
   templateUrl: './product-list.component.html',
   selector: 'product-list',
 })
 export class ProductListComponent implements OnInit {
+  products: IProduct[] = [];
+  filterable: IProduct[] = [];
+
+  constructor(private productList: ProductService) {}
+
   headerStars = '';
   onNotify(message: string): void {
     this.headerStars = message;
   }
   ngOnInit(): void {
     console.log('application started');
-    this.filterBy = 'hammer';
+    this.products = this.productList.getProducts();
+    this.filterable = this.products;
   }
 
   title = 'Product List';
@@ -43,32 +50,4 @@ export class ProductListComponent implements OnInit {
         .includes(value.toLocaleLowerCase().trim())
     );
   }
-
-  filterable: IProduct[] = [];
-  products: IProduct[] = [
-    {
-      productName: 'Hammer',
-      code: 'J90-N23R3-R3R',
-      price: 45.99,
-      starRating: 4.3,
-      img: 'https://lh3.googleusercontent.com/ogw/ADea4I7RsvE6g4QHoadQ672IwHgG4MSCMnnmCmOAUzA4=s32-c-mo',
-      availability: `${new Date().toLocaleDateString()}`,
-    },
-    {
-      productName: 'Yellow Bird',
-      code: '7H0JR-R29HR-4R',
-      price: 99.99,
-      starRating: 2.3,
-      img: 'https://lh3.googleusercontent.com/ogw/ADea4I7RsvE6g4QHoadQ672IwHgG4MSCMnnmCmOAUzA4=s32-c-mo',
-      availability: `${new Date().toLocaleDateString()}`,
-    },
-    {
-      productName: 'Justin Fork',
-      code: 'H73R-F3TH3-G35',
-      price: 19.99,
-      starRating: 5.0,
-      img: 'https://lh3.googleusercontent.com/ogw/ADea4I7RsvE6g4QHoadQ672IwHgG4MSCMnnmCmOAUzA4=s32-c-mo',
-      availability: `${new Date().toLocaleDateString()}`,
-    },
-  ];
 }
