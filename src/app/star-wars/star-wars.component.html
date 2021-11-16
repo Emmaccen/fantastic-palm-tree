@@ -14,19 +14,15 @@
         </tr>
       </thead>
       <tbody>
-        <!-- <tr *ngFor="let product of filterable">
-          <td>
-            <img
-              *ngIf="showImage"
-              [src]="product.img"
-              [style.width.px]="imageWidth"
-            />
-          </td>
-          <td>{{ product.productName }}</td>
-          <td>{{ product.code | uppercase }}</td>
-          <td>{{ product.availability }}</td>
-          <td>{{ product.price | currency }}</td>
-        </tr> -->
+        <tr *ngFor="let people of starWarsData.results">
+          <td>{{ people.name }}</td>
+          <td>{{ people.height }}</td>
+          <td>{{ people.gender }}</td>
+          <td>{{ people.homeworld }}</td>
+          <td>{{ people.films.length }}</td>
+          <td>{{ people.birth_year }}</td>
+          <td>{{ people.hair_color }}</td>
+        </tr>
       </tbody>
     </table>
   </div>

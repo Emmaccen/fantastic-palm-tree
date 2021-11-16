@@ -7,10 +7,29 @@ import { ProductListComponent } from './product list/product-list.component';
 import { StarComponent } from './shared-components/star.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StarWarsComponent } from './star-wars/star-wars.component';
+import { RouterModule } from '@angular/router';
+import { WelcomeComponent } from './home/welcome/welcome.component';
 
 @NgModule({
-  declarations: [AppComponent, ProductListComponent, StarComponent, StarWarsComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    ProductListComponent,
+    StarComponent,
+    StarWarsComponent,
+    WelcomeComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: 'products', component: ProductListComponent },
+      { path: 'star-wars', component: StarWarsComponent },
+      { path: '', component: WelcomeComponent, pathMatch: 'full' },
+      { path: '**', component: WelcomeComponent, pathMatch: 'full' },
+    ]),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

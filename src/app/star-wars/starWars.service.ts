@@ -13,8 +13,8 @@ export class StarWarsService implements OnInit {
 
   ngOnInit(): void {}
 
-  getStarWars(): Observable<IStarWars[]> {
-    return this.http.get<IStarWars[]>(this._apiUrl).pipe(
+  public getStarWars(): Observable<IStarWars> {
+    return this.http.get<IStarWars>(this._apiUrl).pipe(
       tap((data) => console.log(data)),
       catchError(this.handleError)
     );
