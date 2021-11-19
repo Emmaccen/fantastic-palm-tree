@@ -1,0 +1,22 @@
+<div>
+  <button (click)="goBack()" class="btn btn-primary mb-3">< Back</button>
+  <div class="card-content">
+    <h4 class="card-title">{{ details.name }}</h4>
+    <div class="card-body">
+      <p>height: {{ details.height }}</p>
+      <p>mass: {{ details.mass }}</p>
+      <p>hair_color: {{ details.hair_color }}</p>
+      <p>skin_color: {{ details.skin_color }}</p>
+      <p>eye_color: {{ details.eye_color }}</p>
+      <p>birth_year: {{ details.birth_year }}</p>
+      <p>gender: {{ details.gender }}</p>
+      <p>homeworld: {{ details.homeworld }}</p>
+      <p>films: {{ details.films.length }}</p>
+      <p>species: {{ details.species.length }}</p>
+      <p>starships: {{ details.starships.length }}</p>
+      <p>created: {{ details.created }}</p>
+      <p>edited: {{ details.edited }}</p>
+      <p>url: {{ details.url }}</p>
+    </div>
+  </div>
+</div>

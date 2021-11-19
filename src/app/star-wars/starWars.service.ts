@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { IStarWars } from './IStarWars';
+import { IStarWars, IStarWarDetail } from './IStarWars';
 import { catchError, tap } from 'rxjs/Operators';
 
 @Injectable({
@@ -15,6 +15,13 @@ export class StarWarsService implements OnInit {
 
   public getStarWars(): Observable<IStarWars> {
     return this.http.get<IStarWars>(this._apiUrl).pipe(
+      tap((data) => console.log(data)),
+      catchError(this.handleError)
+    );
+  }
+
+  public getStarWarDetail(id: string): Observable<IStarWarDetail> {
+    return this.http.get<IStarWarDetail>(`${this._apiUrl}/${id}`).pipe(
       tap((data) => console.log(data)),
       catchError(this.handleError)
     );

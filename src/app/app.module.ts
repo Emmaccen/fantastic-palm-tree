@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StarWarsComponent } from './star-wars/star-wars.component';
 import { RouterModule } from '@angular/router';
 import { WelcomeComponent } from './home/welcome/welcome.component';
+import { StarDetailsComponent } from './star-details/star-details.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { WelcomeComponent } from './home/welcome/welcome.component';
     StarComponent,
     StarWarsComponent,
     WelcomeComponent,
+    StarDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,7 @@ import { WelcomeComponent } from './home/welcome/welcome.component';
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent },
       { path: 'star-wars', component: StarWarsComponent },
+      { path: 'star-wars/:id', component: StarDetailsComponent },
       { path: '', component: WelcomeComponent, pathMatch: 'full' },
       { path: '**', component: WelcomeComponent, pathMatch: 'full' },
     ]),

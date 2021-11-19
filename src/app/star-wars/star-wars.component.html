@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let people of starWarsData.results">
+        <tr *ngFor="let people of starWarsData.results; let i = index">
           <td>{{ people.name }}</td>
           <td>{{ people.height }}</td>
           <td>{{ people.gender }}</td>
@@ -22,6 +22,9 @@
           <td>{{ people.films.length }}</td>
           <td>{{ people.birth_year }}</td>
           <td>{{ people.hair_color }}</td>
+          <td>
+            <a [routerLink]="['./', i + 1]" class="btn btn-primary"> View </a>
+          </td>
         </tr>
       </tbody>
     </table>
